@@ -23,13 +23,13 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
     private final ClickListener clickListener;
 
     public class SongViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        ImageView ivCover;
-        TextView tvTitle,tvSinger;
+        ImageView songcover;
+        TextView songtitle,Singer;
         public SongViewHolder(@NonNull View itemView) {
             super(itemView);
-            ivCover = itemView.findViewById(R.id.iv_cover);
-            tvTitle = itemView.findViewById(R.id.tv_song_title);
-            tvSinger = itemView.findViewById(R.id.tv_singer);
+            songcover = itemView.findViewById(R.id.songcover);
+            songtitle = itemView.findViewById(R.id.songtitle);
+            Singer = itemView.findViewById(R.id.singer);
             itemView.setOnClickListener(this);
         }
         @Override
@@ -55,11 +55,11 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
     }
     @Override
     public void onBindViewHolder(@NonNull SongViewHolder holder, int position) {
-        holder.tvTitle.setText(songs.get(position).getTitle());
-        holder.tvSinger.setText(songs.get(position).getArtists().get(0).getFullName());
+        holder.songtitle.setText(songs.get(position).getTitle());
+        holder.Singer.setText(songs.get(position).getArtists().get(0).getFullName());
         Glide.with(context)
                 .load(songs.get(position).getImage().getCover().getUrl())
-                .into(holder.ivCover);
+                .into(holder.songcover);
     }
     @Override
     public int getItemCount() {

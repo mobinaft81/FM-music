@@ -19,8 +19,8 @@
 
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/view_pager"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_width="388dp"
+                android:layout_height="41dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
@@ -28,7 +28,7 @@
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textsearch" />
+                app:layout_constraintTop_toBottomOf="@+id/txtsearch" />
 
             <Button
                 android:id="@+id/button"
@@ -41,9 +41,8 @@
                 android:backgroundTint="@android:color/holo_purple"
                 android:paddingVertical="20dp"
                 android:text="برترین ها"
-                android:textSize="35dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/results"
+                android:textSize="35sp"
+                android:textStyle="normal|bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view_pager" />
@@ -61,17 +60,18 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="236dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginStart="232dp"
+                android:layout_marginTop="32dp"
+                android:background="@android:color/holo_purple"
                 android:text="جدید ترین ها"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/button" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/latestsongs"
+                android:id="@+id/newestsongs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -83,7 +83,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/topsingers"
+                android:id="@+id/bestsingers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -97,17 +97,18 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="224dp"
-                android:layout_marginTop="28dp"
-                android:text="محبوب ترن ها"
-                android:textColor="@color/black"
+                android:layout_marginStart="212dp"
+                android:layout_marginTop="40dp"
+                android:background="@android:color/holo_purple"
+                android:text="محبوب ترین ها"
+                android:textColor="@color/white"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/latestsongs" />
+                app:layout_constraintTop_toBottomOf="@+id/newestsongs" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textsearch"
+                android:id="@+id/txtsearch"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -123,12 +124,11 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/searchbox"
+                    android:id="@+id/search"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxLines="1"
-                    android:text="جستجوی آهنگ"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/white" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -136,13 +136,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
+                android:background="@android:color/holo_purple"
                 android:clickable="true"
                 app:backgroundTint="@android:color/holo_purple"
-                app:layout_constraintBottom_toBottomOf="@+id/textsearch"
+                app:layout_constraintBottom_toBottomOf="@+id/txtsearch"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textsearch"
+                app:layout_constraintTop_toTopOf="@+id/txtsearch"
                 app:srcCompat="@drawable/ic_baseline_search_24"
-                app:tint="@color/black"
+                app:tint="@color/white"
                 tools:ignore="SpeakableTextPresentCheck" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

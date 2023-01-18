@@ -19,9 +19,6 @@ public interface ApiService {
     @GET("song/new/0/11")
     Call<SongResponse> getLatestSongs();
 
-    @GET("song/slider/latest")
-    Call<SongResponse> getLatestSliders();
-
     @GET("artist/trending/0/4")
     Call<ArtistResponse> getTrendingArtists();
 
@@ -35,5 +32,5 @@ public interface ApiService {
     Call<Song> getSongById(@Path("id") String songId);
 
     @GET("search/query/{query}/0/50")
-    Call<SearchResponse> search(@Path("query") String query);
+    Call<SearchResponse> search(@Path("search") String search);
 }

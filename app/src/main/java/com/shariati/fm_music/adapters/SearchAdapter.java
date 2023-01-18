@@ -23,12 +23,12 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
         private final ClickListener clickListener;
 
 public class SearchViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    ImageView ivCover;
-    TextView tvName;
+    ImageView songcover;
+    TextView Name;
     public SearchViewHolder(@NonNull View itemView) {
         super(itemView);
-        ivCover = itemView.findViewById(R.id.iv_cover);
-        tvName = itemView.findViewById(R.id.tv_name);
+        songcover = itemView.findViewById(R.id.songcover);
+        Name = itemView.findViewById(R.id.name);
         itemView.setOnClickListener(this);
     }
     @Override
@@ -55,16 +55,16 @@ public interface ClickListener {
     @Override
     public void onBindViewHolder(@NonNull SearchAdapter.SearchViewHolder holder, int position) {
         if (results.get(position).getType().equals("song")){
-            holder.tvName.setText(results.get(position).getSong().getTitle());
+            holder.Name.setText(results.get(position).getSong().getTitle());
             Glide.with(context)
                     .load(results.get(position).getSong().getImage().getCover().getUrl())
-                    .into(holder.ivCover);
+                    .into(holder.songcover);
         }else {
-            holder.tvName.setText(results.get(position).getArtist().getFullName());
+            holder.Name.setText(results.get(position).getArtist().getFullName());
             Glide.with(context)
                     .load(results.get(position).getArtist().getImage().getCover().getUrl())
                     .circleCrop()
-                    .into(holder.ivCover);
+                    .into(holder.songcover);
         }
     }
     @Override

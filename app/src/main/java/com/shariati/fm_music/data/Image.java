@@ -17,7 +17,6 @@ public class Image{
 	private CoverSmall coverSmall;
 
 	@SerializedName("slider")
-	private Slider slider;
 
 	public ThumbnailSmall getThumbnailSmall(){
 		return thumbnailSmall;
@@ -35,7 +34,4 @@ public class Image{
 		return coverSmall;
 	}
 
-	public Slider getSlider(){
-		return slider;
-	}
 }
