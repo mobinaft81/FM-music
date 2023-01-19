@@ -20,9 +20,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity{
 
-    private TextView results;
-    private RecyclerView newestsongs, bestsingers;
-    private EditText search;
+    private TextView Results;
+    private RecyclerView newest_songs, best_singers;
+    private EditText Search;
     private ViewPager viewPager;
 
     @Override
@@ -30,13 +30,13 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        results = findViewById(R.id.results);
-        newestsongs = findViewById(R.id.newestsongs );
-        bestsingers = findViewById(R.id.bestsingers);
+        Results = findViewById(R.id.results);
+        newest_songs = findViewById(R.id.newestsongs );
+        best_singers = findViewById(R.id.bestsingers);
         viewPager = findViewById(R.id.view_pager);
         Button hitsBtn = findViewById(R.id.button);
         FloatingActionButton btnSearch = findViewById(R.id.btnsearch);
-        search = findViewById(R.id.search);
+        Search = findViewById(R.id.search);
 
         hitsBtn.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, HitsActivity.class);
@@ -46,23 +46,23 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, SearchActivity.class);
-                intent.putExtra("search",search.getText().toString());
+                intent.putExtra("search",Search.getText().toString());
                 startActivity(intent);
             }
         });
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        newestsongs.setLayoutManager(layoutManager);
+        newest_songs.setLayoutManager(layoutManager);
         LinearLayoutManager layoutManager1
                 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        bestsingers.setLayoutManager(layoutManager1);
+        best_singers.setLayoutManager(layoutManager1);
 
         RequestManager manager = new RequestManager(this);
 
         SongListRequestListener latestListener = new SongListRequestListener() {
             @Override
             public void didFetch(SongResponse response) {
-                newestsongs.setAdapter(new SongAdapter(getApplicationContext(), response.getResults(), (position, v,id) -> {
+                newest_songs.setAdapter(new SongAdapter(getApplicationContext(), response.getResults(), (position, v,id) -> {
                     Intent intent = new Intent(MainActivity.this,SongActivity.class);
                     intent.putExtra("id",id);
                     startActivity(intent);
@@ -70,18 +70,18 @@ public class MainActivity extends AppCompatActivity{
             }
             @Override
             public void didError(String errorMessage) {
-                results.setText(errorMessage);
+                Results.setText(errorMessage);
             }
         };
 
         ArtistsRequestListener artistsListener = new ArtistsRequestListener() {
             @Override
             public void didFetch(ArtistResponse response) {
-                bestsingers.setAdapter(new ArtistAdapter(MainActivity.this, response.getResults()));
+                best_singers.setAdapter(new ArtistAdapter(MainActivity.this, response.getResults()));
             }
             @Override
             public void didError(String errorMessage) {
-                results.setText(errorMessage);
+                Results.setText(errorMessage);
             }
         };
         manager.getLatestSongs(latestListener);

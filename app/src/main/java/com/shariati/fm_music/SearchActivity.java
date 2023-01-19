@@ -30,7 +30,7 @@ public class SearchActivity extends AppCompatActivity {
         Results.setLayoutManager(new GridLayoutManager(this,2));
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            String query = extras.getString("query");
+            String query = extras.getString("search");
             RequestManager manager = new RequestManager(SearchActivity.this);
             SearchResultsListener listener = new SearchResultsListener() {
                 @Override

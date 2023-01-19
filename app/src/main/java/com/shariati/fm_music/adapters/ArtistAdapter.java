@@ -27,13 +27,13 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
     }
     public static class ArtistViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView songcover;
-        TextView Name;
+        ImageView song_cover;
+        TextView sName;
 
         public ArtistViewHolder(@NonNull View itemView) {
             super(itemView);
-            songcover = itemView.findViewById(R.id.songcover);
-            Name = itemView.findViewById(R.id.name);
+            song_cover = itemView.findViewById(R.id.songcover);
+            sName = itemView.findViewById(R.id.name);
 
         }
     }
@@ -47,11 +47,11 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
 
     @Override
     public void onBindViewHolder(@NonNull ArtistViewHolder holder, int position) {
-        holder.Name.setText(artists.get(position).getFullName());
+        holder.sName.setText(artists.get(position).getFullName());
         Glide.with(context)
                 .load(artists.get(position).getImage().getCover().getUrl())
                 .circleCrop()
-                .into(holder.songcover);
+                .into(holder.song_cover);
     }
 
     @Override

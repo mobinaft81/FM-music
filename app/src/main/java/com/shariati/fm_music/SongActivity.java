@@ -24,8 +24,8 @@ import java.util.TimerTask;
 
 public class SongActivity extends AppCompatActivity {
 
-    private TextView songtitle, singer,numplays,pulicationdate;
-    private ImageView btnPlay, songcover;
+    private TextView song_title, Singer,num_plays,pulication_date;
+    private ImageView btn_Play, song_cover;
     MediaPlayer mediaPlayer;
     SeekBar seekBar;
 
@@ -34,13 +34,13 @@ public class SongActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song);
-        songtitle = findViewById(R.id.songtitle);
-        singer = findViewById(R.id.singer);
-        btnPlay = findViewById(R.id.btnplay);
-        songcover = findViewById(R.id.songcover);
+        song_title = findViewById(R.id.songtitle);
+        Singer = findViewById(R.id.singer);
+        btn_Play = findViewById(R.id.btnplay);
+        song_cover = findViewById(R.id.songcover);
         seekBar = findViewById(R.id.seekBar);
-        numplays = findViewById(R.id.numplays);
-        pulicationdate = findViewById(R.id.pulicationdate);
+        num_plays = findViewById(R.id.numplays);
+        pulication_date = findViewById(R.id.pulicationdate);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -50,17 +50,17 @@ public class SongActivity extends AppCompatActivity {
                 @Override
                 public void didFetch(Song response) {
                     playAudio(response.getAudio().getMedium().getUrl());
-                    songtitle.setText(response.getTitle());
-                    singer.setText(response.getArtists().get(0).getFullName());
-                    numplays.setText(response.getDownloadCount());
-                    pulicationdate.setText(miladiToShamsi(response.getReleaseDate()));
+                    song_title.setText(response.getTitle());
+                    Singer.setText(response.getArtists().get(0).getFullName());
+                    num_plays.setText(response.getDownloadCount());
+                    pulication_date.setText(miladiToShamsi(response.getReleaseDate()));
                     Glide.with(SongActivity.this)
                             .load(response.getImage().getCover().getUrl())
-                            .into(songcover);
+                            .into(song_cover);
                 }
                 @Override
                 public void didError(String errorMessage) {
-                    songtitle.setText(errorMessage);
+                    song_title.setText(errorMessage);
                 }
             };
             manager.getSongById(listener, value);
@@ -105,19 +105,19 @@ public class SongActivity extends AppCompatActivity {
                 }
             }}, 0, 1000);
 
-        btnPlay.setOnClickListener(v -> {
+        btn_Play.setOnClickListener(v -> {
             if (mediaPlayer.isPlaying()) {
                 mediaPlayer.pause();
-                btnPlay.setImageResource(R.drawable.ic_baseline_play_circle_24);
+                btn_Play.setImageResource(R.drawable.ic_baseline_play_circle_24);
             } else {
                 mediaPlayer.start();
-                btnPlay.setImageResource(R.drawable.ic_baseline_pause_circle_24);
+                btn_Play.setImageResource(R.drawable.ic_baseline_pause_circle_24);
             }
         });
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
-                btnPlay.setImageResource(R.drawable.ic_baseline_play_circle_24);
+                btn_Play.setImageResource(R.drawable.ic_baseline_play_circle_24);
             }
         });
     }

@@ -14,29 +14,29 @@ import com.shariati.fm_music.data.SongResponse;
 
 public class HitsActivity extends AppCompatActivity {
 
-    private RecyclerView besttoday, bestweek;
+    private RecyclerView best_today, best_week;
     private TextView Error;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hits);
-        besttoday = findViewById(R.id.besttoday);
-        bestweek = findViewById(R.id.bestweek);
+        best_today = findViewById(R.id.besttoday);
+        best_week = findViewById(R.id.bestweek);
         Error = findViewById(R.id.error);
 
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        besttoday.setLayoutManager(layoutManager);
+        best_today.setLayoutManager(layoutManager);
         LinearLayoutManager layoutManager1
                 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        bestweek.setLayoutManager(layoutManager1);
+        best_week.setLayoutManager(layoutManager1);
 
         RequestManager manager = new RequestManager(this);
         SongListRequestListener todayListener = new SongListRequestListener() {
             @Override
             public void didFetch(SongResponse response) {
-                besttoday.setAdapter(new SongAdapter(HitsActivity.this, response.getResults(),
+                best_today.setAdapter(new SongAdapter(HitsActivity.this, response.getResults(),
                         new SongAdapter.ClickListener() {
                             @Override
                             public void onSongClick(int position, View v, String id) {
@@ -55,7 +55,7 @@ public class HitsActivity extends AppCompatActivity {
         SongListRequestListener thisWeekListener = new SongListRequestListener() {
             @Override
             public void didFetch(SongResponse response) {
-                bestweek.setAdapter(new SongAdapter(HitsActivity.this, response.getResults(),
+                best_week.setAdapter(new SongAdapter(HitsActivity.this, response.getResults(),
                         (position, v, id) -> {
                             Intent intent = new Intent(HitsActivity.this, SongActivity.class);
                             intent.putExtra("id", id);
